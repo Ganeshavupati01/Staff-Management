@@ -1,0 +1,43 @@
+<?php
+if(isset($_POST['submit']))
+{
+	$search=$_POST['search'];
+	$sql="select * from staff_leaves where Staff_Name='$search'";
+	$result=mysqli_query($con,$sql);
+	if($result)
+	{
+		if(mysqli_num_rows($result)>0)
+		{
+			echo"<thead>
+			     <tr>
+			     <th>Staff_Name</th>
+			     <th>Profession</th>
+			     <th>CLS_They_Have</th>
+			     <th>CLS_They_Used</th>
+			     <th>ELS_They_Have</th>
+			     <th>ELS_They_Used</th>
+			     <th>SLS_They_Have</th>
+			     <th>SLS_They_Used</th>
+		       	     </tr>
+			     </thead>";
+			$row=mysqli_fetch_assoc($result);
+			echo"<tbody>
+			     <tr>
+			     <td>.$row[Staff_Name].</td>
+			     <td>.$row[Profession].</td>
+			     <td>.$row[CLS_They_Have].</td>
+			     <td>.$row[CLS_They_Used].</td>
+			     <td>.$row[ELS_They_Have].</td>
+			     <td>.$row[ELS_They_Used].</td>
+			     <td>.$row[SLS_They_Have].</td>
+			     <td>.$row[SLS_They_Used].</td>
+		       	     </tr>
+			     </body>";
+		}
+		else
+		{
+			echo"DATA NOT FOUND";
+		}
+	}
+}
+?>
